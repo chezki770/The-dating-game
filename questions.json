@@ -1,0 +1,228 @@
+{
+  "set_1": [
+    {
+      "id": 1,
+      "question": "Given the choice of anyone in the world, whom would you want as a dinner guest?"
+    },
+    {
+      "id": 2,
+      "question": "Would you like to be famous? In what way?"
+    },
+    {
+      "id": 3,
+      "question": "Before making a telephone call, do you ever rehearse what you are going to say? Why?"
+    },
+    {
+      "id": 4,
+      "question": "What would constitute a 'perfect' day for you?"
+    },
+    {
+      "id": 5,
+      "question": "When did you last sing to yourself? To someone else?"
+    },
+    {
+      "id": 6,
+      "question": "If you were able to live to the age of 90 and retain either the mind or body of a 30-year-old for the last 60 years of your life, which would you want?"
+    },
+    {
+      "id": 7,
+      "question": "Do you have a secret hunch about how you will die?"
+    },
+    {
+      "id": 8,
+      "question": "Name three things you and your partner appear to have in common."
+    },
+    {
+      "id": 9,
+      "question": "For what in your life do you feel most grateful?"
+    },
+    {
+      "id": 10,
+      "question": "If you could change anything about the way you were raised, what would it be?"
+    },
+    {
+      "id": 11,
+      "question": "Take four minutes and tell your partner your life story in as much detail as possible."
+    },
+    {
+      "id": 12,
+      "question": "If you could wake up tomorrow having gained any one quality or ability, what would it be?"
+    },
+    {
+      "id": 13,
+      "question": "If you were stuck on an island which 3 things can't you live without?"
+    },
+    {
+      "id": 14,
+      "question": "Are you a morning person or night person?"
+    },
+    {
+      "id": 15,
+      "question": "What is your secret hidden talent?"
+    },
+    {
+      "id": 16,
+      "question": "If you could have any superpower, what would it be and why?"
+    },
+    {
+      "id": 17,
+      "question": "If you could only eat one food for the rest of your life, what would it be?"
+    },
+    {
+      "id": 18,
+      "question": "When you were a kid, what did you want to be when you grew up?"
+    },
+    {
+      "id": 19,
+      "question": "Which one describes you more, an introvert or extrovert?"
+    },
+    {
+      "id": 20,
+      "question": "What is the greatest accomplishment of your life?"
+    },
+    {
+      "id": 21,
+      "question": "What do you value most in a friendship?"
+    },
+    {
+      "id": 22,
+      "question": "Do you have specific dietary or nutritional attitudes? I.e., Vegan, Health foods etc?"
+    },
+    {
+      "id": 23,
+      "question": "What is your attitude towards money?"
+    },
+    {
+      "id": 24,
+      "question": "What is your ideal family size?"
+    },
+    {
+      "id": 25,
+      "question": "Describe a typical Shabbat in your future home?"
+    }
+  ],
+  "set_2": [
+    {
+      "id": 1,
+      "question": "If a crystal ball could tell you the truth about yourself, your life, the future or anything else, what would you want to know?"
+    },
+    {
+      "id": 2,
+      "question": "Is there something that you've dreamed of doing for a long time? Why haven't you done it?"
+    },
+    {
+      "id": 3,
+      "question": "What is your most treasured memory?"
+    },
+    {
+      "id": 4,
+      "question": "What is your most terrible memory?"
+    },
+    {
+      "id": 5,
+      "question": "If you knew that in one year you would die suddenly, would you change anything about the way you are now living? Why?"
+    },
+    {
+      "id": 6,
+      "question": "What does friendship mean to you?"
+    },
+    {
+      "id": 7,
+      "question": "What roles do love and affection play in your life?"
+    },
+    {
+      "id": 8,
+      "question": "Alternate sharing something you consider a positive characteristic of your partner. Share a total of five items."
+    },
+    {
+      "id": 9,
+      "question": "How close and warm is your family? Do you feel your childhood was happier than most other people's?"
+    },
+    {
+      "id": 10,
+      "question": "How do you feel about your relationship with your mother?"
+    },
+    {
+      "id": 11,
+      "question": "What's the best part about your job?"
+    },
+    {
+      "id": 12,
+      "question": "What is your pet peeve?"
+    },
+    {
+      "id": 13,
+      "question": "What do you do to unwind at the end of a day?"
+    },
+    {
+      "id": 14,
+      "question": "How important is it that your spouse values learning Torah/Chassidus?"
+    },
+    {
+      "id": 15,
+      "question": "What is one of your dreams/aspirations you wish to achieve in your future?"
+    }
+  ],
+  "set_3": [
+    {
+      "id": 1,
+      "question": "Make three true 'we' statements each. For instance, 'We are both in this room feeling ... '"
+    },
+    {
+      "id": 2,
+      "question": "Complete this sentence: 'I wish I had someone with whom I could share ...'"
+    },
+    {
+      "id": 3,
+      "question": "If you were going to become a close friend with your partner, please share what would be important for him or her to know."
+    },
+    {
+      "id": 4,
+      "question": "Tell your partner what you like about them; be very honest this time, saying things that you might not say to someone you've just met."
+    },
+    {
+      "id": 5,
+      "question": "Share with your partner an embarrassing moment in your life."
+    },
+    {
+      "id": 6,
+      "question": "When did you last cry in front of another person? By yourself?"
+    },
+    {
+      "id": 7,
+      "question": "Tell your partner something that you like about them already."
+    },
+    {
+      "id": 8,
+      "question": "What, if anything, is too serious to be joked about?"
+    },
+    {
+      "id": 9,
+      "question": "If you were to die this evening with no opportunity to communicate with anyone, what would you most regret not having told someone? Why haven't you told them yet?"
+    },
+    {
+      "id": 10,
+      "question": "Your house, containing everything you own, catches fire. After saving your loved ones and pets, you have time to safely make a final dash to save any one item. What would it be? Why?"
+    },
+    {
+      "id": 11,
+      "question": "Of all the people in your family, whose death would you find most disturbing? Why?"
+    },
+    {
+      "id": 12,
+      "question": "Share a personal problem and ask your partner's advice on how he or she might handle it. Also, ask your partner to reflect back to you how you seem to be feeling about the problem you have chosen."
+    },
+    {
+      "id": 13,
+      "question": "Do you prefer making plans or following along with what someone else planned?"
+    },
+    {
+      "id": 14,
+      "question": "What quirky habit or behaviour about you are you willing to share?"
+    },
+    {
+      "id": 15,
+      "question": "Do you want an 'open home' policy or more private?"
+    }
+  ]
+}
