@@ -1,12 +1,14 @@
 const slider = document.getElementById("slider");
 const sliderValue = document.getElementById("sliderValue");
 const labels = ["Low", "Medium", "High"];
+const startGame = document.getElementById("startGame");
+const startScreen = document.getElementById("startScreen");
+const gameScreen = document.getElementById("gameScreen");
+const currentQuestionElement = document.getElementById("currentQuestion");
 
 slider.addEventListener("input", function() {
     sliderValue.textContent = labels[this.value - 1];
 });
-
-const startGame = document.getElementById("startGame");
 
 let questions = [
     {
@@ -32,6 +34,14 @@ let questions = [
 ];
 let currentQuestionIndex = 0;
 
+// Start game when button is clicked
+startGame.addEventListener('click', function() {
+    startScreen.style.display = 'none';
+    gameScreen.style.display = 'flex';
+    loadQuestions();
+    displayCurrentQuestion();
+});
+
 function loadQuestions() {
     shuffleArray(questions);
 }
@@ -43,23 +53,15 @@ function shuffleArray(array) {
     }
 }
 
-function addQuestion() {
+function displayCurrentQuestion() {
     if (questions.length === 0) {
-        console.error('No questions loaded');
+        currentQuestionElement.textContent = 'No more questions available!';
         return;
     }
-
-    const answer = document.getElementById("answer").value;
-    const difficulty = slider.value;
-    const questionList = document.getElementById("questionList");
-
-    const currentQuestion = questions[currentQuestionIndex].question;
-    const li = document.createElement("li");
-    li.textContent = `Question: ${currentQuestion} | Answer: ${answer} | Difficulty: ${labels[difficulty - 1]}`;
-    questionList.appendChild(li);
-
-    currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+    currentQuestionElement.textContent = questions[currentQuestionIndex].question;
 }
 
-// Initialize questions when the page loads
-document.addEventListener('DOMContentLoaded', loadQuestions);
+function nextQuestion() {
+    currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+    displayCurrentQuestion();
+}
