@@ -12,7 +12,7 @@
     {
         "id": 3,
         "question": "What is your stance on recreational marijuana?",
-        "set_id": "set_1"
+        "set_id": "set_2"
     },
     {
         "id": 4,
@@ -27,7 +27,7 @@
     {
         "id": 6,
         "question": "Do you want an ‘open home’ policy or more private?",
-        "set_id": "set_2"
+        "set_id": "set_1"
     },
     {
         "id": 7,
@@ -51,7 +51,7 @@
     },
     {
         "id": 11,
-        "question": "What role does religion play in your future family life?",
+        "question": "What role does being a Lubavitcher play in your future family life?",
         "set_id": "set_2"
     },
     {
@@ -406,7 +406,7 @@
     },
     {
         "id": 82,
-        "question": "How can I help you feel more appreciated? What can I do for you?",
+        "question": "Given the choice of anyone in the world, whom would you want as a dinner guest?",
         "set_id": "set_2"
     },
     {
@@ -998,5 +998,60 @@
         "id": 200,
         "question": "Do you have a mentor in life that you’ve continuously looked up to?",
         "set_id": "set_2"
+    },
+    {
+        "id": 201,
+        "question": "Would you like to be famous? In what way?",
+        "set_id": "set_1"
+    },
+    {
+        "id": 202,
+        "question": "Before making a telephone call, do you ever rehearse what you are going to say? Why?",
+        "set_id": "set_1"
+    },
+    {
+        "id": 203,
+        "question": "What would constitute a 'perfect' day for you?",
+        "set_id": "set_1"
+    },
+    {
+        "id": 204,
+        "question": "When did you last sing to yourself? To someone else?",
+        "set_id": "set_1"
+    },
+    {
+        "id": 205,
+        "question": "If you were able to live to the age of 90 and retain either the mind or body of a 30-year-old for the last 60 years of your life, which would you want?",
+        "set_id": "set_1"
+    },
+    {
+        "id": 206,
+        "question": "Do you have a secret hunch about how you will die?",
+        "set_id": "set_1"
+    },
+    {
+        "id": 207,
+        "question": "Name three things you and your partner appear to have in common.",
+        "set_id": "set_1"
+    },
+    {
+        "id": 208,
+        "question": "For what in your life do you feel most grateful?",
+        "set_id": "set_1"
+    },
+    {
+        "id": 209,
+        "question": "If you could change anything about the way you were raised, what would it be?",
+        "set_id": "set_1"
+    },
+    {
+        "id": 210,
+        "question": "Take four minutes and tell your partner your life story in as much detail as possible.",
+        "set_id": "set_1"
+    },
+    {
+        "id": 211,
+        "question": "If you could wake up tomorrow having gained any one quality or ability, what would it be?",
+        "set_id": "set_1"
     }
 ]

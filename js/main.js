@@ -21,14 +21,14 @@ async function loadTenQuestions() {
         const response = await fetch('og_set_g.json');
         allQuestions = await response.json();
         console.log('Questions loaded:', allQuestions.length);
-        
+
         // Organize questions by set for easier access
         window.questionSets = {
             set_1: allQuestions.filter(q => q.set_id === "set_1"),
             set_2: allQuestions.filter(q => q.set_id === "set_2"),
             set_3: allQuestions.filter(q => q.set_id === "set_3")
         };
-        
+
         console.log(`Set 1 (Easy): ${questionSets.set_1.length} questions`);
         console.log(`Set 2 (Medium): ${questionSets.set_2.length} questions`);
         console.log(`Set 3 (Hard): ${questionSets.set_3.length} questions`);
@@ -41,12 +41,12 @@ async function loadTenQuestions() {
 // Selects a random subset of questions from a given set, ensuring no duplicates with used questions
 function selectRandomQuestions(set, count, usedIds) {
     const availableQuestions = set.filter(q => !usedIds.includes(q.id));
-    
+
     if (availableQuestions.length < count) {
         console.warn(`Not enough unique questions in set. Requested ${count}, but only ${availableQuestions.length} available.`);
         return shuffleArray([...availableQuestions]);
     }
-    
+
     const shuffled = shuffleArray([...availableQuestions]);
     return shuffled.slice(0, count);
 }
@@ -55,13 +55,13 @@ function selectRandomQuestions(set, count, usedIds) {
 function selectQuestionsByDifficulty(difficulty, usedIds = []) {
     let questions = [];
     const sets = window.questionSets;
-    
+
     if (!sets) {
         console.error('Question sets not initialized');
         return [];
     }
-    
-    switch(difficulty.toLowerCase()) {
+
+    switch (difficulty.toLowerCase()) {
         case 'low':
             // 6 from set_1, 3 from set_2, 1 from set_3
             questions = [
@@ -90,14 +90,14 @@ function selectQuestionsByDifficulty(difficulty, usedIds = []) {
             console.error('Invalid difficulty level:', difficulty);
             return [];
     }
-    
+
     return shuffleArray(questions); // Shuffle again to mix questions from different sets
 }
 
 // Event listener for the difficulty slider
-slider.addEventListener("input", function() {
+slider.addEventListener("input", function () {
     sliderValue.textContent = labels[this.value - 1];
-    
+
     // If game is already running, reload questions with new difficulty
     if (gameScreen.style.display === 'flex') {
         loadNewRound();
@@ -105,7 +105,7 @@ slider.addEventListener("input", function() {
 });
 
 // Start game when button is clicked
-startGame.addEventListener('click', async function() {
+startGame.addEventListener('click', async function () {
     startScreen.style.display = 'none';
     gameScreen.style.display = 'flex';
     await loadTenQuestions();
@@ -140,10 +140,14 @@ function displayCurrentQuestion() {
         currentQuestionElement.textContent = 'No questions available for this difficulty level!';
         return;
     }
-    
+
     const question = currentQuestions[currentQuestionIndex];
     currentQuestionElement.textContent = question.question;
-    
+
+    // Log the question ID and set
+    console.log('Current Question ID:', question.id);
+    console.log('Question Set:', question.set_id);
+
     // Add current question ID to used questions
     if (!usedQuestions.includes(question.id)) {
         usedQuestions.push(question.id);
@@ -160,9 +164,9 @@ function updateQuestionCounter() {
 // Move to the next question
 function nextQuestion() {
     if (currentQuestions.length === 0) return;
-    
+
     questionCount++;
-    
+
     // If we've shown 10 questions, get a new set
     if (questionCount >= 10) {
         roundNumber++;
@@ -173,7 +177,7 @@ function nextQuestion() {
     } else {
         currentQuestionIndex = (currentQuestionIndex + 1) % 10; // Keep within the 10 questions
     }
-    
+
     updateQuestionCounter();
     displayCurrentQuestion();
 }

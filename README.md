@@ -31,12 +31,12 @@ new_dating_game/
 
    Using Python (Python 3):
    ```bash
-   python -m http.server 8000
+   python3 -m http.server 8000
    ```
    
    Using Python (Python 2):
    ```bash
-   python -m SimpleHTTPServer 8000
+   python2 -m SimpleHTTPServer 8000
    ```
    
    Using Node.js (with http-server installed):
