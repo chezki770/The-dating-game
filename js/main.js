@@ -18,7 +18,7 @@ let roundNumber = 1;
 // Load questions from JSON file
 async function loadTenQuestions() {
     try {
-        const response = await fetch('og_set_g.json');
+        const response = await fetch('questions.json');
         allQuestions = await response.json();
         console.log('Questions loaded:', allQuestions.length);
 
