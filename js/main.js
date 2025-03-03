@@ -5,45 +5,52 @@ const startGame = document.getElementById("startGame");
 const startScreen = document.getElementById("startScreen");
 const gameScreen = document.getElementById("gameScreen");
 const currentQuestionElement = document.getElementById("currentQuestion");
+const difficultySlider = document.getElementById("slider");
+
+let allQuestions = [];
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+
+// Load questions from JSON file
+async function loadAllQuestions() {
+    try {
+        const response = await fetch('questions.json');
+        allQuestions = await response.json();
+        console.log('Questions loaded:', allQuestions.length);
+    } catch (error) {
+        console.error('Error loading questions:', error);
+        allQuestions = [];
+    }
+}
+
+// Filter questions by difficulty level
+function filterQuestionsByDifficulty(difficulty) {
+    const setId = `set_${difficulty}`;
+    return allQuestions.filter(q => q.set_id === setId);
+}
 
 slider.addEventListener("input", function() {
     sliderValue.textContent = labels[this.value - 1];
+    if (gameScreen.style.display === 'flex') {
+        loadQuestions();
+        displayCurrentQuestion();
+    }
 });
 
-let questions = [
-    {
-        "id": 1,
-        "question": "How much importance do you place on work vs leisure?",
-        "set_id": "set_1"
-    },
-    {
-        "id": 2,
-        "question": "Do you have specific dietary or nutritional attitudes? I.e., Vegan, Health foods etc?",
-        "set_id": "set_1"
-    },
-    {
-        "id": 3,
-        "question": "What is your stance on recreational marijuana?",
-        "set_id": "set_1"
-    },
-    {
-        "id": 4,
-        "question": "What is your attitude towards money?",
-        "set_id": "set_1"
-    }
-];
-let currentQuestionIndex = 0;
-
 // Start game when button is clicked
-startGame.addEventListener('click', function() {
+startGame.addEventListener('click', async function() {
     startScreen.style.display = 'none';
     gameScreen.style.display = 'flex';
+    await loadAllQuestions();
     loadQuestions();
     displayCurrentQuestion();
 });
 
 function loadQuestions() {
-    shuffleArray(questions);
+    const difficulty = difficultySlider.value;
+    currentQuestions = filterQuestionsByDifficulty(difficulty);
+    shuffleArray(currentQuestions);
+    currentQuestionIndex = 0;
 }
 
 function shuffleArray(array) {
@@ -54,14 +61,15 @@ function shuffleArray(array) {
 }
 
 function displayCurrentQuestion() {
-    if (questions.length === 0) {
-        currentQuestionElement.textContent = 'No more questions available!';
+    if (currentQuestions.length === 0) {
+        currentQuestionElement.textContent = 'No questions available for this difficulty level!';
         return;
     }
-    currentQuestionElement.textContent = questions[currentQuestionIndex].question;
+    currentQuestionElement.textContent = currentQuestions[currentQuestionIndex].question;
 }
 
 function nextQuestion() {
-    currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+    if (currentQuestions.length === 0) return;
+    currentQuestionIndex = (currentQuestionIndex + 1) % currentQuestions.length;
     displayCurrentQuestion();
 }
