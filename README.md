@@ -21,7 +21,7 @@ new_dating_game/
 ├── index.html         # Main HTML file
 ├── js/
 │   └── main.js       # JavaScript functionality
-├── og_set_g.json     # Database of questions
+├── questions.json     # Database of questions
 └── README.md        # This file
 ```
 
@@ -69,7 +69,7 @@ The questions are organized into three difficulty levels:
 
 ## Development
 
-To add more questions, you can modify the `og_set_g.json` file. Each question should follow this format:
+To add more questions, you can modify the `questions.json` file. Each question should follow this format:
 
 ```json
 {
