@@ -5,11 +5,13 @@ const User = require('../models/User');
 // Register a new user
 router.post('/register', async (req, res) => {
   try {
+    console.log('Register request body:', req.body);
     const { username, email, password } = req.body;
     
     // Check if user already exists
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
+      console.log('Registration failed: User already exists', { email, username });
       return res.status(400).json({ 
         message: 'User already exists with that email or username' 
       });
@@ -45,6 +47,7 @@ router.post('/register', async (req, res) => {
 // Login user
 router.post('/login', async (req, res) => {
   try {
+    console.log('Login request body:', req.body);
     const { username, password } = req.body;
     
     // Find user by username or email
@@ -53,12 +56,14 @@ router.post('/login', async (req, res) => {
     });
     
     if (!user) {
+      console.log('Login failed: User not found', { username, loginAttempt: 'email or username' });
       return res.status(400).json({ message: 'Invalid credentials' });
     }
     
     // Check password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
+      console.log('Login failed: Invalid password for user', { username: user.username });
       return res.status(400).json({ message: 'Invalid credentials' });
     }
     

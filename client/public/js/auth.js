@@ -22,7 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Functions
     async function checkAuthStatus() {
         try {
-            const response = await fetch('/api/auth/status');
+            const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.AUTH.STATUS}`, {
+                credentials: 'include', // Important for cookies/sessions
+                mode: 'cors'
+            });
             const data = await response.json();
             
             if (data.isAuthenticated) {
@@ -41,7 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function fetchUserProfile() {
         try {
-            const response = await fetch('/api/user/profile');
+            const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.USER.PROFILE}`, {
+                credentials: 'include',
+                mode: 'cors'
+            });
             if (response.ok) {
                 const user = await response.json();
                 usernameElement.textContent = user.username;
@@ -66,13 +72,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('loginPassword').value;
         
         try {
-            const response = await fetch('/api/auth/login', {
+            console.log('Login payload:', { username, password });
+            const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.AUTH.LOGIN}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: 'include',
+                mode: 'cors',
                 body: JSON.stringify({ username, password })
             });
+            
+            console.log('Login response status:', response.status);
             
             const data = await response.json();
             
@@ -100,13 +111,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('registerPassword').value;
         
         try {
-            const response = await fetch('/api/auth/register', {
+            console.log('Register payload:', { username, email, password });
+            const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.AUTH.REGISTER}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: 'include',
+                mode: 'cors',
                 body: JSON.stringify({ username, email, password })
             });
+            
+            console.log('Register response status:', response.status);
             
             const data = await response.json();
             
@@ -128,7 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function handleLogout() {
         try {
-            await fetch('/api/auth/logout');
+            await fetch(`${CONFIG.API_BASE_URL}${CONFIG.AUTH.LOGOUT}`, {
+                credentials: 'include'
+            });
             // Clear user data
             sessionStorage.removeItem('user');
             userInfo.classList.add('hidden');

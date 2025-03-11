@@ -20,7 +20,9 @@ let currentGameQuestions = []; // Store questions for current game session
 // Check if user is authenticated
 async function checkAuthStatus() {
     try {
-        const response = await fetch('/api/auth/status');
+        const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.AUTH.STATUS}`, {
+            credentials: 'include'
+        });
         const data = await response.json();
         isAuthenticated = data.isAuthenticated;
         return isAuthenticated;
@@ -33,7 +35,7 @@ async function checkAuthStatus() {
 // Load questions from JSON file
 async function loadTenQuestions() {
     try {
-        const response = await fetch('questions.json');
+        const response = await fetch('/questions.json');
         allQuestions = await response.json();
         console.log('Questions loaded:', allQuestions.length);
 
@@ -222,11 +224,12 @@ async function saveGameHistory() {
     try {
         const difficulty = labels[slider.value - 1];
         
-        const response = await fetch('/api/user/game-history', {
+        const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.USER.GAME_HISTORY}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
                 difficultyLevel: difficulty,
                 questionsAsked: currentGameQuestions,
