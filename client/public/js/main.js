@@ -14,11 +14,28 @@ let usedQuestions = [];
 let currentQuestionIndex = 0;
 let questionCount = 0;
 let roundNumber = 1;
+let isAuthenticated = false;
+let currentGameQuestions = []; // Store questions for current game session
+
+// Check if user is authenticated
+async function checkAuthStatus() {
+    try {
+        const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.AUTH.STATUS}`, {
+            credentials: 'include'
+        });
+        const data = await response.json();
+        isAuthenticated = data.isAuthenticated;
+        return isAuthenticated;
+    } catch (error) {
+        console.error('Error checking auth status:', error);
+        return false;
+    }
+}
 
 // Load questions from JSON file
 async function loadTenQuestions() {
     try {
-        const response = await fetch('questions.json');
+        const response = await fetch('/questions.json');
         allQuestions = await response.json();
         console.log('Questions loaded:', allQuestions.length);
 
@@ -109,6 +126,8 @@ startGame.addEventListener('click', async function () {
     startScreen.style.display = 'none';
     gameScreen.style.display = 'flex';
     await loadTenQuestions();
+    // Check authentication status
+    isAuthenticated = await checkAuthStatus();
     loadNewRound();
 });
 
@@ -120,6 +139,7 @@ function loadNewRound() {
     currentQuestionIndex = 0;
     questionCount = 0;
     roundNumber = 1;
+    currentGameQuestions = []; // Reset current game questions for new game
     updateQuestionCounter();
     displayCurrentQuestion();
 }
@@ -152,6 +172,11 @@ function displayCurrentQuestion() {
     if (!usedQuestions.includes(question.id)) {
         usedQuestions.push(question.id);
     }
+    
+    // Add to current game questions if not already there
+    if (!currentGameQuestions.includes(question.id)) {
+        currentGameQuestions.push(question.id);
+    }
 }
 
 // Update the question counter display
@@ -167,17 +192,57 @@ function nextQuestion() {
 
     questionCount++;
 
+    // Add current question to game history if not already added
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+    if (currentQuestion && !currentGameQuestions.includes(currentQuestion.id)) {
+        currentGameQuestions.push(currentQuestion.id);
+    }
+
     // If we've shown 10 questions, get a new set
     if (questionCount >= 10) {
+        // Save current round to database if user is authenticated
+        saveGameHistory();
+        
         roundNumber++;
         questionCount = 0;
         const difficulty = labels[slider.value - 1];
         currentQuestions = selectQuestionsByDifficulty(difficulty, usedQuestions);
         currentQuestionIndex = 0;
+        currentGameQuestions = []; // Reset current game questions for new round
     } else {
         currentQuestionIndex = (currentQuestionIndex + 1) % 10; // Keep within the 10 questions
     }
 
     updateQuestionCounter();
     displayCurrentQuestion();
+}
+
+// Save game history to database if user is authenticated
+async function saveGameHistory() {
+    if (!isAuthenticated) return;
+    
+    try {
+        const difficulty = labels[slider.value - 1];
+        
+        const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.USER.GAME_HISTORY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                difficultyLevel: difficulty,
+                questionsAsked: currentGameQuestions,
+                round: roundNumber
+            })
+        });
+        
+        if (response.ok) {
+            console.log('Game history saved successfully');
+        } else {
+            console.error('Failed to save game history');
+        }
+    } catch (error) {
+        console.error('Error saving game history:', error);
+    }
 }

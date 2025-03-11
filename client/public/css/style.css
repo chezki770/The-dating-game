@@ -1,0 +1,46 @@
+/* Main styling for Dating Game application */
+
+/* Auth container styling */
+.auth-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Utility classes */
+.hidden {
+    display: none;
+}
+
+.alert {
+    margin-top: 10px;
+}
+
+/* Game title styling */
+.game-title {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Card styling */
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Game screen styling */
+#gameScreen {
+    margin-top: 2rem;
+}
+
+/* Question styling */
+.current-question {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+/* Footer styling */
+footer {
+    margin-top: 3rem;
+}
